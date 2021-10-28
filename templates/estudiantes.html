@@ -1,0 +1,39 @@
+{% extends "baseEst.html" %}
+
+{% block title %} Formulario {% endblock %}
+
+{% block contenido %}
+<h1>Ingreso de Estudiantes</h1>
+<form id="formulario" action="/estudiante/list" method="POST" novalidate>
+  {{ form.hidden_tag() }}
+  <div>
+    {{ form.documento.label }}
+    {{ form.documento(size=20)}}<br><br>
+  </div>
+  <div>
+    {{ form.nombre.label }}
+    {{ form.nombre(size=20)}}<br><br>
+  </div>
+  <div>
+    {{ form.ciclo.label }}
+    {{ form.ciclo() }}
+    {{ form.sexo.label }}
+    {{ form.sexo(size=10)}} <br>
+    {{ form.estado()}}
+    {{ form.estado.label }}
+    <br><br>
+  </div>
+  <div>
+    {{ form.enviar(size=9) }}
+    {{ form.consultar(size=9) }}
+    {{ form.listar(size=9) }}
+    {{ form.eliminar(size=9) }}
+    {{ form.actualizar(size=9) }}
+    </div>
+    <br><br>
+    <div>
+      <a href='/login'>Iniciar Sesión  </a>
+      <a href='/logout'>  Cerrar Sesión</a>      
+    </div>
+</form>
+{% endblock %}
