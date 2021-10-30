@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Restaurant</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <!-- owl css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" type="text/css">
+    <!-- style css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}" type="text/css">
+</head>
+<!-- body -->
+
+<body class="main-layout">
+
+    <div id="content">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><a href="/login"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></a><span class="font-weight-bold">{{ name }}</span><span class="text-black-50">{{ email }}</span><span> </span></div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
+                        </div>
+                    <form action="/perfil/update" method="POST">                        
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">Nombre Completo</label><input type="text" class="form-control" placeholder="nombre completo" name="nombre_completo"></div>
+                            <div class="col-md-12"><label class="labels">Teléfono</label><input type="text" class="form-control" placeholder="enter phone number" name="telefono"></div>
+                            <div class="col-md-12"><label class="labels">Dirección</label><input type="text" class="form-control" placeholder="enter address" name="direccion"></div>
+                            <div class="col-md-12"><label class="labels">Pais</label><input type="text" class="form-control" placeholder="enter country" name="pais"></div>
+                            <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="enter email" name="email"></div>                            
+                        </div>
+                        <ul> <input class="mt-5 text-center" type="submit" value="ACTUALIZAR"></ul>                        
+                        <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
+                    </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center experience"><span>Pedidos realizados por el usuario</span></div><br>
+                        <caption>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEDIDOS</caption><br>
+                        <table border="1">                            
+                            <tr>
+                                <th>Nombre del pedido </th>
+                                <th>$ Precio del pedido</th>
+                            </tr>
+                            {% for r in row %}
+                            <tr>
+                                <td>{{ r ["nombre_plato"] }} </td>
+                                <td>{{ r ["precio_plato"] }} </td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer -->    
+            <div class="copyright">
+                <div class="container">
+                    <p>© 2021 Design by Equipo 4 (MinTIC 2020)</p>
+                </div>
+            </div>
+        </div>
+    </fooetr>
+    <!-- end footer -->
+
+    </div>
+    </div>
+    <div class="overlay"></div>
+    <!-- Javascript files-->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/funciones.js' ) }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function() {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <style>
+    #owl-demo .item{
+        margin: 3px;
+    }
+    #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    </style>
+
+     
+      <script>
+         $(document).ready(function() {
+           var owl = $('.owl-carousel');
+           owl.owlCarousel({
+             margin: 10,
+             nav: true,
+             loop: true,
+             responsive: {
+               0: {
+                 items: 1
+               },
+               600: {
+                 items: 2
+               },
+               1000: {
+                 items: 5
+               }
+             }
+           })
+         })
+      </script>
+
+</body>
+
+</html>
